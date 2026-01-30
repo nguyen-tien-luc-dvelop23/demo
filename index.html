@@ -42,7 +42,7 @@
                 </p>
 
                 <div class="download-group animate delay-3">
-                    <a href="https://gis.vn/download"
+                    <a href="https://github.com/nguyen-tien-luc-dvelop23/test1/releases/download/v1.0.8/app-release.apk"
                         class="download-btn android">
                         <div class="btn-glow"></div>
                         <i class="fab fa-android"></i>
@@ -84,6 +84,9 @@
         </footer>
     </div>
 
+    <!-- Canvas Confetti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
     <script>
         // 3D Tilt Effect
         const wrapper = document.getElementById('card-wrapper');
@@ -103,6 +106,58 @@
 
         document.addEventListener('mouseenter', () => {
             wrapper.style.transition = 'none';
+        });
+
+        // Firework Effect
+        function launchFireworks() {
+            const duration = 15 * 1000;
+            const animationEnd = Date.now() + duration;
+            const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 9999 };
+
+            function randomInRange(min, max) {
+                return Math.random() * (max - min) + min;
+            }
+
+            const interval = setInterval(function () {
+                const timeLeft = animationEnd - Date.now();
+
+                if (timeLeft <= 0) {
+                    return clearInterval(interval);
+                }
+
+                const particleCount = 50 * (timeLeft / duration);
+
+                // Blast from different positions
+                confetti({
+                    ...defaults,
+                    particleCount,
+                    origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 }
+                });
+                confetti({
+                    ...defaults,
+                    particleCount,
+                    origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 }
+                });
+            }, 250);
+        }
+
+        // More robust trigger
+        if (document.readyState === 'complete') {
+            launchFireworks();
+        } else {
+            window.addEventListener('load', launchFireworks);
+        }
+
+        // Trigger on click with high z-index
+        document.querySelectorAll('.download-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                confetti({
+                    particleCount: 200,
+                    spread: 90,
+                    origin: { y: 0.7 },
+                    zIndex: 9999
+                });
+            });
         });
     </script>
 </body>

@@ -1,49 +1,96 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tải về Ứng dụng - Trải nghiệm Premium</title>
-    <meta name="description" content="Tải xuống phiên bản mới nhất của ứng dụng. Trải nghiệm mượt mà, giao diện hiện đại.">
-    
+    <title>Download Premium App - Nguyễn Tiến Lực</title>
+    <meta name="description" content="Trải nghiệm ứng dụng tuyệt vời nhất, tải ngay phiên bản v1.0.8.">
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
-    
-    <!-- Font Awesome for icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
-    <div class="container">
-        <header class="glass-card">
-            <span class="version-badge">Phên bản v1.0.8</span>
-            <h1 class="hero-title">Sẵn sàng để Bắt đầu?</h1>
-            <p class="hero-subtitle">
-                Khám phá những tính năng tuyệt vời nhất trong phiên bản mới nhất của chúng tôi. 
-                Giao diện tinh tế, hiệu năng vượt trội và tính năng bảo mật hàng đầu.
-            </p>
-            
-            <a href="https://github.com/nguyen-tien-luc-dvelop23/test1/releases/download/v1.0.8/app-release.apk" class="download-btn">
-                <i class="fas fa-download"></i>
-                Tải xuống APK Ngay
-            </a>
-        </header>
 
-        <main class="app-mockup">
-            <!-- Sử dụng mockup đã được generate -->
-            <img src="C:/Users/luc/.gemini/antigravity/brain/76e7dfe1-af17-4d32-aed6-469d7b277e91/app_preview_mockup_1769795218548.png" alt="By : Nguyễn Tiến Lực">
-        </main>
+<body>
+    <!-- Animated Mesh Background -->
+    <div class="mesh-bg">
+        <div class="mesh-ball ball-1"></div>
+        <div class="mesh-ball ball-2"></div>
+        <div class="mesh-ball ball-3"></div>
+    </div>
+
+    <div class="container">
+        <div class="tilt-wrapper" id="card-wrapper">
+            <header class="glass-card">
+                <div class="version-badge">
+                    <i class="fas fa-rocket"></i>
+                    <span>Version v1.0.8</span>
+                </div>
+
+                <h1 class="hero-title">Beyond Limits.</h1>
+
+                <p class="hero-subtitle">
+                    Chúng tôi mang đến giải pháp công nghệ hiện đại, tối ưu hóa mọi trải nghiệm của người dùng.
+                    Tải về ngay để khám phá sự khác biệt.
+                </p>
+
+                <a href="https://github.com/nguyen-tien-luc-dvelop23/test1/releases/download/v1.0.8/app-release.apk"
+                    class="download-btn">
+                    <div class="btn-glow"></div>
+                    <i class="fas fa-cloud-arrow-down"></i>
+                    Tải về APK (32MB)
+                </a>
+
+                <div class="features-grid">
+                    <div class="feature-item">
+                        <i class="fas fa-bolt"></i>
+                        <span>Siêu tốc</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-shield-halved"></i>
+                        <span>Bảo mật</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-wand-magic-sparkles"></i>
+                        <span>Tinh tế</span>
+                    </div>
+                </div>
+            </header>
+        </div>
+
+        <footer>
+            <p>Thiết kế tinh xảo bởi <span class="creator-name">Nguyễn Tiến Lực</span></p>
+        </footer>
     </div>
 
     <script>
-        // Simple micro-interaction for the button
-        const btn = document.querySelector('.download-btn');
-        btn.addEventListener('click', () => {
-            console.log('Download started...');
+        // 3D Tilt Effect
+        const wrapper = document.getElementById('card-wrapper');
+        const card = document.querySelector('.glass-card');
+
+        document.addEventListener('mousemove', (e) => {
+            const xAxis = (window.innerWidth / 2 - e.pageX) / 40;
+            const yAxis = (window.innerHeight / 2 - e.pageY) / 40;
+            wrapper.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
+        });
+
+        // Reset on mouse leave
+        document.addEventListener('mouseleave', () => {
+            wrapper.style.transform = `rotateY(0deg) rotateX(0deg)`;
+            wrapper.style.transition = 'all 0.5s ease';
+        });
+
+        document.addEventListener('mouseenter', () => {
+            wrapper.style.transition = 'none';
         });
     </script>
 </body>
+
 </html>
